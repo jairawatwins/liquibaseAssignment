@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <changeSet id="creating table department v14" author="abc">
+
+        <createTable tableName="Department">
+            <column name="DEPT_ID" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="DEPT_NAME" type="varchar(25)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="Add value in table department v14" author="abc">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from department</sqlCheck>
+        </preConditions>
+        <sql>
+            insert into department values(11,"Mehanical");
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

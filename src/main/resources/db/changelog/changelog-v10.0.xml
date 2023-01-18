@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <changeSet id="creating table student v15" author="abc">
+
+        <createTable tableName="Student">
+            <column name="studentId" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="FNAME" type="varchar(25)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LNAME" type="varchar(25)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPT_ID" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="Add value in table student v15" author="abc">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from student</sqlCheck>
+        </preConditions>
+        <sql>
+            insert into student values(100,"Virat","Verma");
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
